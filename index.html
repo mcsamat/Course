@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Python RPG Tutorial</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        line-height: 1.6;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+      }
+      .container {
+        max-width: 800px;
+        margin: 20px;
+        padding: 20px;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        background-color: #f9f9f9;
+      }
+      h1,
+      h2,
+      h3 {
+        color: #333;
+      }
+      pre {
+        background-color: #eee;
+        padding: 10px;
+        border-radius: 4px;
+        overflow-x: auto;
+      }
+      a {
+        color: #1a73e8;
+        text-decoration: none;
+      }
+      a:hover {
+        text-decoration: underline;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>
+        Guide for Absolute Beginners to Build a Command Line RPG in Python
+      </h1>
+      <p>
+        Welcome to the world of Python programming! In this guide, we will go
+        through the basics of Python, step by step, to help you understand the
+        code of a simple command-line role-playing game (RPG). By the end of
+        this guide, you'll be able to build, edit, and improve the game on your
+        own.
+      </p>
+      <h2>Table of Contents</h2>
+      <ol>
+        <li><a href="#intro">Introduction to Python</a></li>
+        <li><a href="#variables">Variables and Data Types</a></li>
+        <li><a href="#functions">Functions</a></li>
+        <li><a href="#conditionals">Conditionals and Loops</a></li>
+        <li><a href="#classes">Classes and Objects</a></li>
+        <li><a href="#rpg">Building the RPG Step-by-Step</a></li>
+        <li><a href="#improve">Adding Features and Improving the Game</a></li>
+      </ol>
+
+      <h2 id="intro">1. Introduction to Python</h2>
+      <p>
+        Python is a powerful, easy-to-learn programming language. It is widely
+        used in web development, data analysis, artificial intelligence, and
+        more. Let's start with some basic concepts.
+      </p>
+      <pre><code>print("Hello, World!")</code></pre>
+      <h3>Exercise</h3>
+      <p>
+        Try modifying the above code to print your own name. For example,
+        <code>print("Hello, Alice!")</code>.
+      </p>
+
+      <h2 id="variables">2. Variables and Data Types</h2>
+      <p>
+        Variables are used to store data. Python has several data types,
+        including integers, floats, strings, and lists.
+      </p>
+      <pre><code># Integer
+age = 25
+
+# Float
+price = 19.99
+
+# String
+name = "Alice"
+
+# List
+numbers = [1, 2, 3, 4, 5]
+</code></pre>
+      <h3>Exercise</h3>
+      <p>
+        Declare a variable for your favorite color and print it. For example,
+        <code>color = "blue"</code> then <code>print(color)</code>.
+      </p>
+
+      <h2 id="functions">3. Functions</h2>
+      <p>
+        Functions are blocks of code that perform a specific task. They help
+        organize and reuse code.
+      </p>
+      <pre><code>def greet(name):
+    print(f"Hello, {name}!")
+
+greet("Alice")
+</code></pre>
+      <h3>Exercise</h3>
+      <p>
+        Create a function that adds two numbers and prints the result. For
+        example, <code>def add(a, b): print(a + b)</code> then
+        <code>add(2, 3)</code>.
+      </p>
+
+      <h2 id="conditionals">4. Conditionals and Loops</h2>
+      <p>
+        Conditionals (if statements) allow you to execute code based on
+        conditions. Loops (for and while) let you repeat code multiple times.
+      </p>
+      <h3>Conditionals Example</h3>
+      <pre><code>age = 18
+if age >= 18:
+    print("You are an adult.")
+else:
+    print("You are a minor.")
+</code></pre>
+      <h3>Exercise</h3>
+      <p>
+        Write a conditional that checks if a number is positive, negative, or
+        zero and prints a message accordingly.
+      </p>
+
+      <h3>Loops Example</h3>
+      <pre><code># For loop
+for i in range(5):
+    print(i)
+
+# While loop
+count = 0
+while count < 5:
+    print(count)
+    count += 1
+</code></pre>
+      <h3>Exercise</h3>
+      <p>
+        Write a for loop that prints all the numbers from 1 to 10. Then, write a
+        while loop that does the same.
+      </p>
+
+      <h2 id="classes">5. Classes and Objects</h2>
+      <p>
+        Classes are blueprints for creating objects. An object is an instance of
+        a class. Classes encapsulate data and functions that operate on the
+        data.
+      </p>
+      <pre><code>class Dog:
+    def __init__(self, name, age):
+        self.name = name
+        self.age = age
+
+    def bark(self):
+        print(f"{self.name} says Woof!")
+
+my_dog = Dog("Buddy", 3)
+my_dog.bark()
+</code></pre>
+      <h3>Exercise</h3>
+      <p>
+        Create a class for a Cat with a name and an age. Add a method to make
+        the cat meow. Create an instance of the Cat class and call the meow
+        method.
+      </p>
+
+      <h2 id="rpg">6. Building the RPG Step-by-Step</h2>
+      <p>Now that you know the basics, let's build the RPG step-by-step.</p>
+
+      <h3>Step 1: Define the Player and Enemy Classes</h3>
+      <pre><code>class Player:
+    def __init__(self, name):
+        self.name = name
+        self.hp = 100
+        self.attack = 10
+        self.defense = 5
+        self.alive = True
+
+    def take_damage(self, damage):
+        self.hp -= damage
+        if self.hp <= 0:
+            self.hp = 0
+            self.alive = False
+
+    def attack_enemy(self, enemy):
+        damage = self.attack - enemy.defense
+        if damage > 0:
+            enemy.take_damage(damage)
+            print(f"{self.name} attacks {enemy.name} for {damage} damage.")
+        else:
+            print(f"{self.name}'s attack was too weak to harm {enemy.name}.")
+
+class Enemy:
+    def __init__(self, name, hp, attack, defense):
+        self.name = name
+        self.hp = hp
+        self.attack = attack
+        self.defense = defense
+        self.alive = True
+
+    def take_damage(self, damage):
+        self.hp -= damage
+        if self.hp <= 0:
+            self.hp = 0
+            self.alive = False
+
+    def attack_player(self, player):
+        damage = self.attack - player.defense
+        if damage > 0:
+            player.take_damage(damage)
+            print(f"{self.name} attacks {player.name} for {damage} damage.")
+        else:
+            print(f"{self.name}'s attack was too weak to harm {player.name}.")
+</code></pre>
+      <h3>Exercise</h3>
+      <p>
+        Create another class for a different type of enemy (e.g., Dragon) with
+        higher health and attack values.
+      </p>
+
+      <h3>Step 2: Create Combat Function</h3>
+      <pre><code>def print_status(player, enemy):
+    print(f"{player.name}: HP={player.hp}")
+    print(f"{enemy.name}: HP={enemy.hp}")
+
+def combat(player, enemy):
+    print(f"A wild {enemy.name} appears!")
+    while player.alive and enemy.alive:
+        print_status(player, enemy)
+        action = input("Do you want to (1) attack or (2) defend? ")
+        if action == "1":
+            player.attack_enemy(enemy)
+        else:
+            print(f"{player.name} is defending.")
+            player.defense += 5  # Temporary defense boost for defending
+
+        if enemy.alive:
+            enemy.attack_player(player)
+        if action == "2":
+            player.defense -= 5  # Remove the temporary defense boost
+
+    if player.alive:
+        print(f"{player.name} has defeated {enemy.name}!")
+    else:
+        print(f"{player.name} has been defeated by {enemy.name}.")
+</code></pre>
+      <h3>Exercise</h3>
+      <p>
+        Add another combat option (e.g., use a potion to heal) and update the
+        combat function accordingly.
+      </p>
+
+      <h3>Step 3: Create the Adventure Function</h3>
+      <pre><code>def start_adventure():
+    print("Welcome to the adventure game!")
+    player_name = input("Enter your character's name: ")
+    player = Player(player_name)
+
+    print(f"{player.name}, you find yourself in a dark forest.")
+    print("A path splits into two directions.")
+    choice = input("Do you want to go (1) left or (2) right? ")
+
+    if choice == "1":
+        print(f"{player.name} takes the left path and encounters a goblin!")
+        goblin = Enemy("Goblin", 30, 5, 2)
+        combat(player, goblin)
+    else:
+        print(f"{player.name} takes the right path and encounters a wolf!")
+        wolf = Enemy("Wolf", 50, 7, 3)
+        combat(player, wolf)
+
+    if player.alive:
+        print(f"{player.name} continues deeper into the forest and finds a treasure chest.")
+        print("Congratulations, you've completed the adventure!")
+    else:
+        print("Game Over. Better luck next time!")
+
+if __name__ == "__main__":
+    start_adventure()
+</code></pre>
+      <h3>Exercise</h3>
+      <p>
+        Add another choice for the player and create a new enemy encounter or
+        event based on that choice.
+      </p>
+
+      <h2 id="improve">7. Adding Features and Improving the Game</h2>
+      <p>
+        Now that you have the basic structure of the game, here are some ideas
+        for improvements:
+      </p>
+      <ul>
+        <li>
+          <strong>Add More Enemies and Choices</strong>: Create different
+          enemies with varying strengths and weaknesses. Add more story paths
+          and choices for the player.
+        </li>
+        <li>
+          <strong>Implement Inventory System</strong>: Allow the player to
+          collect and use items.
+        </li>
+        <li>
+          <strong>Enhance Combat System</strong>: Add more combat actions like
+          special attacks or spells. Introduce enemy behaviors and AI.
+        </li>
+        <li>
+          <strong>Save and Load Game</strong>: Implement a save and load feature
+          to store and retrieve game states.
+        </li>
+      </ul>
+      <p>
+        By following this guide, you’ve learned the basics of Python programming
+        and how to build a simple command-line RPG. Feel free to experiment and
+        expand the game with your own ideas and features. Happy coding!
+      </p>
+
+      <h2>Start Coding</h2>
+      <p>
+        You can start coding right away using the
+        <a href="https://www.online-python.com/" target="_blank"
+          >online Python editor</a
+        >.
+      </p>
+    </div>
+  </body>
+</html>
